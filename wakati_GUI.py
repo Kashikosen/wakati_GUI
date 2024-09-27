@@ -37,17 +37,17 @@ class Context:
             event, values = window.read()       #イベントの読み取り（イベント待ち）
             print('イベント：', event, ',  値：', values)       #確認表示
 
-            # #Return表記整える
-            # if event.startswith('Return'):
-            #     event == 'Return'
-            #     print(event)
+            #Return表記整える
+            if event.startswith('Return'):
+               event = 'Return'
+               print(event)
 
             #各種ボタン
             if event == None or event == 'bt_quit' or event == 'q' and ('Meta_L' or 'Meta_R'):
                 print('quit')
                 break
 
-            elif event == 'bt_read' or event == 'r' and ('Meta_L' or 'Meta_R') or event == 'Return:603979789':
+            elif event == 'bt_read' or event == 'r' and ('Meta_L' or 'Meta_R') or event.startswith('Return'):
                 #print(values['text1'])
                 self.wakachi_txt =  values['text1']
                 print(self.wakachi_txt)
