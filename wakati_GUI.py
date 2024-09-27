@@ -4,6 +4,7 @@ import threading
 import MeCab
 
 
+
 class Context:
 
     def __init__(self):
@@ -34,19 +35,26 @@ class Context:
         #イベントループ
         while True:
             event, values = window.read()       #イベントの読み取り（イベント待ち）
-            #print('イベント：', event, ',  値：', values)       #確認表示
-            if event == None or event == 'bt_quit' or event == 'q' and 'Meta_L':
+            print('イベント：', event, ',  値：', values)       #確認表示
+
+            # #Return表記整える
+            # if event.startswith('Return'):
+            #     event == 'Return'
+            #     print(event)
+
+            #各種ボタン
+            if event == None or event == 'bt_quit' or event == 'q' and ('Meta_L' or 'Meta_R'):
                 print('quit')
                 break
-            elif event == 'bt_read' or event == 'r' and 'Meta_L':
+
+            elif event == 'bt_read' or event == 'r' and ('Meta_L' or 'Meta_R') or event == 'Return:603979789':
                 #print(values['text1'])
                 self.wakachi_txt =  values['text1']
                 print(self.wakachi_txt)
-
                 #分かち書きを別スレッドで実行
                 threading.Thread(target=self.wakachi, args=(window,), daemon=True).start()
 
-            elif event == 'bt_clear' or event == 'c' and 'Meta_L':
+            elif event == 'bt_clear' or event == 'c' and ('Meta_L' or 'Meta_R'):
                 print('clear')
                 window['text1'].update('')
                 self.wakachi_result = ''
