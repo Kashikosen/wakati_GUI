@@ -1,3 +1,5 @@
+#wakati_GUI.py      GUI実装テスト
+
 #coding: utf-8
 import PySimpleGUI as sg
 import threading
@@ -35,7 +37,7 @@ class Context:
         #イベントループ
         while True:
             event, values = window.read()       #イベントの読み取り（イベント待ち）
-            print('イベント：', event, ',  値：', values)       #確認表示
+            #print('イベント：', event, ',  値：', values)       #確認表示
 
             #Return表記整える
             if event.startswith('Return'):
