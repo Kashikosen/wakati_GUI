@@ -42,7 +42,7 @@ class Context:
             [sg.Multiline(default_text='', size=(120,10), key = 'bunsetu_wakati_result',
                           text_color='#000000', background_color='#aacccc',
                           disabled=True, auto_refresh=True)],
-            [sg.Button('read', key='bt_read'), sg.Button('clear', key='bt_clear'), sg.Button('Quit', key='bt_quit')]
+            [sg.Button('Read(⌘r)', key='bt_read'), sg.Button('Clear(⌘l)', key='bt_clear'), sg.Button('Quit(⌘q)', key='bt_quit')]
             ]
 
         #ウィンドウ作成
@@ -73,7 +73,7 @@ class Context:
                 threading.Thread(target=self.tango_wakati, args=(window,), daemon=True).start()
                 threading.Thread(target=self.bunsetu_wakati, args=(window,), daemon=True).start()
 
-            elif event == 'bt_clear' or event == 'c' and ('Meta_L' or 'Meta_R'):
+            elif event == 'bt_clear' or event == 'l' and ('Meta_L' or 'Meta_R'):
                 print('clear')
                 window['text1'].update('')
                 self.tango_wakati_result = ''
